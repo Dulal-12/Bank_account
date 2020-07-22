@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name = "author" content="Md.Dulal Miah">
+    <title>KLM Bank</title>
+    <link rel="shortcut icon" href="logo/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <div id="login-area">
+            <h1 class="text-center">Welcome to KLM Bank</h1>
+            <div class="submit-area">
+                <h4>Login</h4>
+                <input type="email" placeholder="Email" class="form-control">
+                <br>
+                <input type="Password" placeholder="password" class="form-control">
+                <br>
+                <button id ='login' class="btn btn-success">Enter</button>
+            </div>
+        </div>
+    </main>
+    <section id = "transaction">
+        <div class="row">
+            <div class="col-md-4 col-12 d-flex align-items-center ">
+               <div class="deposit status">
+                  <h5>Deposit-</h5>
+                  <h2>$<span id = 'deposit-money'>00</span></h2>
+               </div>
+            </div>
+            <div class="col-md-4 col-12 d-flex align-items-center ">
+                <div class="withdraw status">
+                    <h5>Withdraw</h5>
+                    <h2>$<span id = 'presentWithdraw'>00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4 col-12 d-flex align-items-center">
+                <div class="balance status">
+                    <h5>Balance</h5>
+                    <h2>$<span id ='balance-money'>1240</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Deposit</h4>
+                    <input id='depositAmount' type="text" class='form-control' placeholder='$you want to deposit'>
+                    <br>
+                    <button id ='depositBtn' class='btn btn-primary'>Deposit</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+               <div class="submit-area">
+                <h4>Withdraw</h4>
+                <input id ='withdraw-amount' type="number" placeholder="$amount you want to withdraw" class='form-control'><br>
+                <button id='withdraw-money' class='btn btn-primary'>Withdraw</button>
+               </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        var loginBtn = document.getElementById('login').addEventListener('click',function(){
+            var loginArea = document.getElementById("login-area").style.display='none';
+            document.getElementById('transaction').style.display='block';
+        })
+        // deposit and balance
+         document.getElementById('depositBtn').addEventListener('click',function(){
+           let newDeposit = document.getElementById('depositAmount').value;
+           let newTaka = parseFloat(newDeposit);
+           let oldDeposit = document.getElementById('deposit-money').innerText;
+           let oldTaka = parseFloat(oldDeposit);
+           let total = newTaka + oldTaka;
+           document.getElementById('deposit-money').innerText=total;
+           document.getElementById('depositAmount').value='';
+           let balance = document.getElementById('balance-money').innerText;
+           let balance1 = parseFloat(balance);
+           balance1+=newTaka;
+           document.getElementById('balance-money').innerText=balance1;
+        })
+
+        // withdraw and balance
+        document.getElementById('withdraw-money').addEventListener('click',function(){
+            let withdraw_taka = document.getElementById('withdraw-amount').value;
+                withdraw_taka = parseFloat(withdraw_taka);
+            let present = document.getElementById('presentWithdraw').innerText;
+                present = parseFloat(present);
+
+            let total = withdraw_taka+ present;
+            document.getElementById('presentWithdraw').innerText=total;
+            document.getElementById('withdraw-amount').value='';
+            let balance = document.getElementById('balance-money').innerText;
+            let balance1 = parseFloat(balance);
+            balance1 = balance1-withdraw_taka ;
+            document.getElementById('balance-money').innerText=balance1;
+
+
+
+        })
+
+    </script>
+    
+</body>
+</html>
